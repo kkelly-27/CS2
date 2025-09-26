@@ -1,0 +1,88 @@
+#Reverse and Display
+def reverse(name):
+    empty_string = ""
+    name_list = list(name)
+    while True:
+        empty_string = empty_string + name_list[-1]
+        name_list.pop()
+        if name_list == []:
+            break
+    print(f'Reversed Name: {empty_string}')
+
+#Make Initials
+def initials(name):
+    list_var = list(name)
+    init = list_var[0]
+
+    for i in range(len(list_var)):
+        if list_var[i] == " " and i + 1 < len(list_var):
+            init += list_var[i+1]
+
+    print(f"Initials: {init}")
+            
+
+    
+#Vowel Counting
+def vowel_count(name):
+    vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    vowel_tracker = 0
+    name_list = list(name)
+    for i in name_list:
+        if i in vowels:
+            vowel_tracker += 1
+    print(f"Vowel Count: {vowel_tracker}")
+
+
+        
+        
+#Name Split       
+
+# Splits a full name string into its individual components (words) by spaces.
+
+#This script iterates through each character in the input string `name`, building up words character by character.
+#When a space character is encountered, the current word is added to the `parts` list and the word buffer is reset.
+#After processing all characters, any remaining word is added to the list.
+#Finally, the list of name parts is printed.
+
+#Example:
+    #Input:  "gordon andrew campbell"
+    #Output: ['gordon', 'andrew', 'campbell'] 
+
+def my_split(name):
+    parts = []
+    current = ""
+    for char in name:
+        if char == " ":
+            if len(current) > 0:
+                parts.append(current)
+                current = ""
+        else:
+            current += char
+    parts.append(current)
+    return parts
+
+#Middle Name
+def middle_name(name):
+    name_list = my_split(name)
+    middle_name_list = name_list[1:-1]
+    print(middle_name_list)
+
+#Hyphen Code
+def hyphen(name):
+    name_list = list(name)
+    for i in name_list: 
+        if i == "-": 
+            print(True)
+            return
+    print(False)
+
+#Main
+def main():
+    name = input('What is your name?: ')
+    initials(name)
+    my_split(name)
+    reverse(name)
+    vowel_count(name)
+    middle_name(name)
+    hyphen(name)
+main()
