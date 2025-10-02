@@ -1,10 +1,8 @@
 "Flower Pot"
-""
-""
-""
-""
-
-
+"Author: Kyle Kelly"
+"Description: "
+"Bugs: Palindrome shows process"
+"Log: 1.4"
 
 #Reverse and Display
 def reverse(name):
@@ -129,12 +127,62 @@ def hyphen(name):
 
 #Main
 def main():
-    name = input('What is your name?: ')
-    initials(name)
-    my_split(name)
-    reverse(name)
-    vowel_count(name)
-    middle_name(name)
-    hyphen(name)
-    palindrome_name(name)
+    while True:
+        print("1. Run Functions Through")
+        print("2. Initials")
+        print("3. Split Name")
+        print("4. Reverse Name")
+        print("5. Vowel Count")
+        print("6. Middle Name")
+        print("7. Hyphen")
+        print("8. Palindrome Check")
+        print("9. Quit")
+       
+        choice = input("Enter Choice: ")
+
+        if choice == "1":
+            name = input('What is your name?: ')
+            initials(name)
+            my_split(name)
+            reverse(name)
+            vowel_count(name)
+            middle_name(name)
+            hyphen(name)
+            palindrome_name(name)
+        
+        elif choice == "2":
+            name = input('What is your name?: ')
+            initials(name)
+
+        elif choice == "3":
+            name = input('What is your name?: ')
+            my_split(name)
+
+        elif choice == "4":
+            name = input('What is your name?: ')
+            reverse(name)
+
+        elif choice == "5":
+            name = input('What is your name?: ')
+            vowel_count(name)
+
+        elif choice == "6":
+            name = input('What is your name?: ')
+            middle_name(name)
+
+        elif choice == "7":
+            name = input('What is your name?: ')
+            hyphen(name)
+
+        elif choice == "8":
+            name = input('What is your name?: ')
+            palindrome_name(name)
+
+        elif choice == "9":
+            name = input('What is your name?: ')
+            print("Quitting...")
+            break
+        else:
+            print("INVALID, TRY AGAIN.")
+
 main()
