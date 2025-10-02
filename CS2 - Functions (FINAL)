@@ -1,6 +1,6 @@
 "Flower Pot"
 "Author: Kyle Kelly"
-"Description: "
+"Description: Lets the runner pick a choice of funtions to go through which configurates and anlalyzes parts of the inputed name." 
 "Bugs: Palindrome shows process"
 "Log: 1.4"
 
@@ -41,7 +41,7 @@ def vowel_count(name):
 
 #Consonant Frequency
 def consonant_freq(name):
-    consonants = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
     consonant_tracker = 0
     name_list = list(name)
     for i in name_list:
@@ -186,3 +186,4 @@ def main():
             print("INVALID, TRY AGAIN.")
 
 main()
+
