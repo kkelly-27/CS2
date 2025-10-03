@@ -1,8 +1,10 @@
 "Flower Pot"
 "Author: Kyle Kelly"
 "Description: Lets the runner pick a choice of funtions to go through which configurates and anlalyzes parts of the inputed name." 
-"Bugs: Palindrome shows process"
+"Bugs: Palindrome shows process, random name doesn't work (Couldn't figure it out)"
 "Log: 1.4"
+
+import random
 
 #Reverse and Display
 def reverse(name):
@@ -49,18 +51,11 @@ def consonant_freq(name):
             consonant_tracker += 1
     print(f"Consonant Count: {consonant_tracker}")
 
-#Uppercase
-def uppercase_name(name):
-    pass
-
-
-#Lowercase
-def lowercase_name(name):
-    pass
-
 
 #Random Name
 def random_name(name):
+    characters = list(name)
+    random.shuffle(characters) 
     pass
 
 #Palindrome
@@ -186,4 +181,3 @@ def main():
             print("INVALID, TRY AGAIN.")
 
 main()
-
