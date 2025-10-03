@@ -1,7 +1,7 @@
 "Flower Pot"
 "Author: Kyle Kelly"
 "Description: Lets the runner pick a choice of funtions to go through which configurates and anlalyzes parts of the inputed name." 
-"Bugs: Palindrome shows process, random name doesn't work (Couldn't figure it out)"
+"Bugs: Palindrome shows process, Random name doesn't work (Couldn't figure it out), Consonant count is not accurate"
 "Log: 1.4"
 
 import random
@@ -128,10 +128,11 @@ def main():
         print("3. Split Name")
         print("4. Reverse Name")
         print("5. Vowel Count")
-        print("6. Middle Name")
-        print("7. Hyphen")
-        print("8. Palindrome Check")
-        print("9. Quit")
+        print("6. Consonent Frequency")
+        print("7. Middle Name")
+        print("8. Hyphen")
+        print("9. Palindrome Check")
+        print("10. Quit")
        
         choice = input("Enter Choice: ")
 
@@ -163,17 +164,21 @@ def main():
 
         elif choice == "6":
             name = input('What is your name?: ')
-            middle_name(name)
+            consonant_freq(name)   
 
         elif choice == "7":
             name = input('What is your name?: ')
-            hyphen(name)
+            middle_name(name)
 
         elif choice == "8":
             name = input('What is your name?: ')
-            palindrome_name(name)
+            hyphen(name)
 
         elif choice == "9":
+            name = input('What is your name?: ')
+            palindrome_name(name)
+
+        elif choice == "10":
             name = input('What is your name?: ')
             print("Quitting...")
             break
