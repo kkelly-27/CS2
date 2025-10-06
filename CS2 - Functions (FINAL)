@@ -2,9 +2,14 @@
 "Author: Kyle Kelly"
 "Description: Lets the runner pick a choice of funtions to go through which configurates and anlalyzes parts of the inputed name." 
 "Bugs: Palindrome shows process, Random name doesn't work (Couldn't figure it out), Consonant count is not accurate"
-"Log: 1.4"
+"Log: 1.6"
 
 import random
+
+
+"Description: Reverses the characters of the inputted name"
+" Args: Takes in inputted name and Sets the name list to negative one, reversing the inputted name in the empty string"
+"Returns: The Reversal of the inputted name"
 
 #Reverse and Display
 def reverse(name):
@@ -16,6 +21,11 @@ def reverse(name):
         if name_list == []:
             break
     print(f'Reversed Name: {empty_string}')
+
+
+"Description: Turns the inputted name into initials"
+" Args: Takes in the first letters of the inputted name"
+"Returns: Initials of inputted name"
 
 #Make Initials
 def initials(name):
@@ -29,7 +39,10 @@ def initials(name):
     print(f"Initials: {init}")
             
 
-    
+"Description: Count vowels inside inputted name"
+" Args: Searches through inputted name to detect a vowel, referencing the vowel list" 
+"Returns: Number of vowels in the inputted name"
+
 #Vowel Counting
 def vowel_count(name):
     vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
@@ -40,6 +53,9 @@ def vowel_count(name):
             vowel_tracker += 1
     print(f"Vowel Count: {vowel_tracker}")
 
+"Description: Takes vowels and reverse engineers vowel count into a consonant frequency"
+" Args: Uses the vowel list and sets an index for every variable not in that list, detecting consonants"
+"Returns: Number of consonants in the inputted name"
 
 #Consonant Frequency
 def consonant_freq(name):
@@ -51,12 +67,19 @@ def consonant_freq(name):
             consonant_tracker += 1
     print(f"Consonant Count: {consonant_tracker}")
 
+"Description: Creates a random name out of the inputted name"
+" Args: N/A"
+"Returns: Creates a random name"
 
 #Random Name
 def random_name(name):
     characters = list(name)
     random.shuffle(characters) 
     pass
+
+"Description: Detects if the inputted name is a palindrome"
+" Args: Takes in the inputted name"
+"Returns: Boolean for gain or lack of Palindrome in input"  
 
 #Palindrome
 def palindrome_name(name):
@@ -105,11 +128,19 @@ def my_split(name):
     parts.append(current)
     return parts
 
+"Description: Allows Middle Name"
+" Args: Takes in Middle Name"
+"Returns: Allows Middle Name using 'my_split'"
+
 #Middle Name
 def middle_name(name):
     name_list = my_split(name)
     middle_name_list = name_list[1:-1]
     print(middle_name_list)
+
+"Description: Detects Hyphen in inputted name"
+" Args: Uses a search in a list to check for hyphens"
+"Returns: Boolean for gain or lack of hyphen in input"
 
 #Hyphen Code
 def hyphen(name):
@@ -119,6 +150,10 @@ def hyphen(name):
             print(True)
             return
     print(False)
+
+"Description: MENU"
+" Args: Uses input and print function in main to create a selection"
+"Returns: Menu"
 
 #Main
 def main():
