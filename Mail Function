@@ -1,0 +1,23 @@
+def mail_function(l, w, h):
+    length = float(length)
+    width = float(width)
+    height = float(height)
+    zipcode1 = int(zipcode1)
+    zipcode2 = int(zipcode2)
+pass
+
+def mail_dimensions(l, w, h):
+    starting_dimensions = 0
+pass
+
+    
+length = input("LENGTH: ") 
+width = input("WIDTH: ")
+height = input("HEIGHT: ")
+zipcode1 = input("ZIP CODE 1: ")
+zipcode2 = input("ZIP CODE 2: ")
+pass
+
+def main(l, w, h):
+    dimensions = input("ENTER DATA: ")
+    dem_split = "Length, Width, Length, Zipcode1, Zipcode2"
