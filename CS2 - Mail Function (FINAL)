@@ -4,9 +4,23 @@ def data_function(length, width, height, zipcode1, zipcode2):
     height = float(height)
     zipcode1 = int(zipcode1)
     zipcode2 = int(zipcode2)
+    return length, width, height, zipcode1, zipcode2
 
 def mail_dimensions(l, w, h):
-    starting_dimensions = 0
+    if (l >= 3.5) and (l <= 4.25) and (w >= .007) and (w <= .016) and (h >= 3.5) and (h <= 6):
+        return 1
+    elif (l >= 4.25) and (l <= 6) and (w >= .007) and (w <= .015) and (h >= 6) and (h <= 11.5):
+        return 2
+    elif (l >= 3.5) and (l <= 6.125) and (w >= .016) and (w <= .25) and (h >= 5) and (h <= 11.5):
+        return 3
+    elif (l >= 6.125) and (l <= 24) and (w >= .25) and (w <= .5) and (h >= 11) and (h <= 18):
+        return 4
+    elif (l + w + w + h + h) <= 84:
+        return 5
+    elif (l + w + w + h + h) >= 84 and (l + w + w + h + h) <= 130:
+        return 6
+    else:
+        return -1
 
 def zip_zone(zip):
     if 1 <= zip <= 6999: 
@@ -25,12 +39,38 @@ def zip_zone(zip):
         zone = 0
     return zone
 
+def money_convert(parcel_type, zone_1, zone_2):
+    price = 0
+    zone_travel = abs(zone_1 - zone_2)
+    if parcel_type == 1: 
+        price = .2 + zone_travel * .03
+    elif parcel_type == 2:
+        price = .37 + zone_travel * .03
+    elif parcel_type == 3:
+        price = .37 + zone_travel * .04
+    elif parcel_type == 4:
+        price = .6 + zone_travel * .05
+    elif parcel_type == 5:
+        price = 2.95 + zone_travel * .25
+    elif parcel_type == 6:
+        price = 3.95 + zone_travel * .35
+    return price
+
 def main():
     dimensions = input("ENTER DATA: ")
     dim_split = dimensions.split(",")
     print(dim_split)
     #remove zeros
     l, h, w, zip_1, zip_2 = data_function(dim_split[0], dim_split[1], dim_split[2], dim_split[3], dim_split[4]) 
-    print(zip_zone(zip_1))
-    print(l, h, w, zip_1, zip_2)
+    print((l, h, w, zip_1, zip_2))
+    
+    zone_1 = zip_zone(zip_1)
+    zone_2 = zip_zone(zip_2)
+
+    print(zone_1, zone_2)
+
+    print(money_convert(mail_dimensions(l, w, h), zone_1, zone_2))
+
+
+    
 main()
