@@ -24,7 +24,16 @@ def p_gender(input):
 
 def p_age(input):
     with open('age.csv', 'w') as output
-
+   with open('titanic.csv', 'r') as file:
+        #header = file.readline().strip().split(',')  # Read the header row
+        #name_index = header.index('Name')  # Find the index of 'Name' column
+       
+        for line in file:
+            row = line.strip().split(',')
+            print(row)
+            #print(row[name_index])
+except FileNotFoundError:
+    print("Error: 'titanic.csv' file not found.")
         # Skip header row
         next(input)
 
@@ -41,6 +50,26 @@ def p_class(input):
         # Skip header row
         next(input)
 
+        first_class = 0
+        second_class = 0
+        third_class = 0
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            class = fields[5]
+           
+            if class == "1":
+                first_class += 1
+            elif class == "2":
+                second_class += 1
+            elif class == "3":
+                third_class += 1
+           
+        output.write("Male" + "," + "Female")
+        output.write("\n")
+        output.write(str(male_count) + "," + str(female_count))
+
 
 def main():
     input_file = 'titanic.csv'
@@ -49,3 +78,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
