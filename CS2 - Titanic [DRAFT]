@@ -1,0 +1,51 @@
+
+def p_gender(input):
+    with open('genders.csv', 'w') as output:
+       
+        # Skip header row
+        next(input)
+       
+        male_count = 0
+        female_count = 0
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            sex = fields[5]
+           
+            if sex == "male":
+                male_count += 1
+            elif sex == "female":
+                female_count += 1
+           
+        output.write("Male" + "," + "Female")
+        output.write("\n")
+        output.write(str(male_count) + "," + str(female_count))
+
+def p_age(input):
+    with open('age.csv', 'w') as output
+
+        # Skip header row
+        next(input)
+
+def p_survivability(input):
+    with open('survival.csv', 'w') as output
+
+        # Skip header row
+        next(input)
+
+
+def p_class(input):
+    with open('class.csv', 'w') as output
+
+        # Skip header row
+        next(input)
+
+
+def main():
+    input_file = 'titanic.csv'
+    with open(input_file, 'r') as input:
+        p_gender(input)
+
+if __name__ == '__main__':
+    main()
