@@ -1,0 +1,216 @@
+
+def load_display():
+    with open('load_display', 'r') as output: 
+
+        top = next(input).strip()
+        columns = top.split(',')
+
+        print("Columns:")
+        print(columns)
+
+        print('\n First 10 Rows:')
+        row_count = 0
+
+        for line in input:
+            if row_count < 10:
+                print(line.strip())
+                row_count += 1
+
+        print('\n Passengers In Total:', row_count)
+
+        output.write('total_passengers\n')
+        output.write(str(row_count))
+
+
+def p_survival_rate(infile):
+    with open('survival_rate.csv', 'w') as output:
+
+        next(infile)
+
+        survived_count = 0
+        total_count = 0
+       
+        for line in infile:
+            fields = line.strip().split(',')
+       
+            survived = fields[1]
+            total_count += 1
+
+            if survived == "1":
+                survived_count += 1
+
+        survival_rate = (survived_count / total_count) * 100
+           
+        output.write("Survived" + "," + "Total" + "," + "Survival Rate (%)")
+        output.write("\n")
+        output.write(
+            str(survived_count) + "," + str(total_count) + "," + f"{survival_rate:.2f}")
+
+
+def p_class(infile):
+    with open('class.csv', 'w') as output:
+
+        next(infile)
+
+        first_class = 0
+        second_class = 0
+        third_class = 0
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            pclass = fields[2]
+           
+            if pclass == "1":
+                first_class += 1
+            elif pclass == "2":
+                second_class += 1
+            elif pclass == "3":
+                third_class += 1
+           
+        output.write("First Class" + "," + "Second Class" + "," + "Third Class")
+        output.write("\n")
+        output.write(str(first_class) + "," + str(second_class) + "," + str(third_class))
+        output.write("\n")
+        output.write(str(first_class) + "," + str(second_class) + "," + str(third_class))
+
+
+def p_gender(infile):
+    with open('genders.csv', 'w') as output:
+
+        next(infile)
+       
+        male_count = 0
+        female_count = 0
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            sex = fields[5]
+           
+            if sex == "male":
+                male_count += 1
+            elif sex == "female":
+                female_count += 1
+           
+        output.write("Male" + "," + "Female")
+        output.write("\n")
+        output.write(str(male_count) + "," + str(female_count))
+
+
+def p_age(infile):
+    with open('age.csv', 'w') as output:
+
+        next(infile)
+
+        total_age = 0
+        age_count = 0
+        survivor_age = 0
+        survivor_count = 0
+        nonsurvivor_age = 0
+        nonsurvivor_count = 0
+        youngest_age = None
+        oldest_age = None
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            survived = fields[1]
+            age = fields[6]
+
+            if age != "":
+                age = float(age)
+                total_age += age
+                age_count += 1
+
+                if youngest_age is None or age < youngest_age:
+                    youngest_age = age
+                if oldest_age is None or age > oldest_age:
+                    oldest_age = age
+
+                if survived == "1":
+                    survivor_age += age
+                    survivor_count += 1
+                else:
+                    nonsurvivor_age += age
+                    nonsurvivor_count += 1
+           
+        average_age = total_age / age_count 
+        average_survivor_age = survivor_age / survivor_count 
+        average_nonsurvivor_age = nonsurvivor_age / nonsurvivor_count 
+
+        output.write('average_age, average_survivor_age, average_nonsurvivor_age, youngest_age, oldest_age\n')
+        output.write(
+                str(round(average_age, 2)) + "," +
+                str(round(average_survivor_age, 2)) + "," +
+                str(round(average_nonsurvivor_age, 2)) + "," +
+                str(youngest_age) + "," +
+                str(oldest_age)
+)
+        
+
+def p_family(infile):
+    with open('family.csv', 'w') as output:
+
+        next(infile)
+
+        total_siblings_spouses = 0
+        total_parents_children = 0
+        passenger_count = 0
+       
+        for line in input:
+            fields = line.strip().split(',')
+       
+            family_connections = fields[7]
+            parents_children = fields[8]
+
+            if family_connections == "":
+                family_connections = 0
+            if parents_children == "":
+                parents_children = 0
+
+            total_family_connections += int(family_connections)
+            total_parents_children += int(parents_children)
+            passenger_count += 1
+           
+        average_family_connections = total_family_connections / passenger_count if passenger_count > 0 else 0
+        average_parents_children = total_parents_children / passenger_count if passenger_count > 0 else 0
+
+        output.write("Average Family Connections" + "," + "Average Parents/Children")
+        output.write("\n")
+        output.write(f"{average_family_connections:.2f}" + "," + f"{average_parents_children:.2f}")
+
+
+def main():
+    input_file = 'titanic.csv'
+    
+    while True:
+        choice = input("Enter 1 For Survival Statistics, Enter 2 For Class Statistics, Enter 3 For Age Statistics, Enter 4 For Family Statistics, Enter 5 To exit: ")
+        if choice == "1":
+            with open(input_file, 'r') as infile:
+                p_survival_rate(infile)
+            print('Open survival_rate.csv')
+        elif choice == "2":
+            with open(input_file, 'r') as infile:
+                p_class(infile)
+            print('Open class.csv')
+        elif choice == "3":
+            with open(input_file, 'r') as infile:
+                p_age(infile)
+            print('Open age.csv')
+        elif choice == "4":
+            with open(input_file, 'r') as infile:
+                p_gender(infile)
+            print('Open gender.csv')
+        elif choice == "5":
+            with open(input_file, 'r') as infile:
+                p_family(infile)
+            print('Open family.csv')
+        elif choice == "6":
+            break
+        else:
+            print("ERROR: Input Valid Choice")
+
+
+if __name__ == "__main__":
+    main()
