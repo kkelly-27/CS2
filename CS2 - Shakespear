@@ -1,3 +1,18 @@
+import string
+
+
+stop_words = [
+    "and", "or", "the", "a", "an", "to", "of", "in", "is", "it",
+    "that", "for", "with", "as", "on", "at", "by", "from",
+    "this", "but", "not", "so", "no", "nor", "too",
+    "be", "been", "being", "are", "was", "were", "am",
+    "do", "does", "did", "done",
+    "have", "has", "had",
+    "he", "she", "him", "his", "her", "they", "them", "their",
+    "we", "us", "our", "you", "your", "i", "me", "my",
+    "who", "whom", "which", "what", "where", "when", "why", "how",
+
+]
 
 
 fname = input('Enter the file name: ')
@@ -9,28 +24,23 @@ except:
 
 counts = dict()
 for line in fhand:
+    line = line.rstrip()
+    line = line.translate(line.maketrans("", "", string.punctuation))
+    line = line.lower()
     words = line.split()
     for word in words:
-        if word not in counts:
+        if word not in counts and word not in stop_words:
             counts[word] = 1
         else:
-            counts[word] += 1
+            if word not in stop_words:
+                counts[word] += 1
 
-print(counts)
+sorted_counts = dict(sorted(counts.items(), key=lambda item: item[1]))
+
+print(sorted_counts)
 
 
-# Code: https://www.py4e.com/code3/count1.py 
+# Code: https://www.py4e.com/code3/count2.py
 
-stop_words = {
-    "and", "or", "the", "a", "an", "to", "of", "in", "is", "it",
-    "that", "for", "with", "as", "on", "at", "by", "from",
-    "this", "but", "not", "so", "no", "nor", "too",
-    "be", "been", "being", "are", "was", "were", "am",
-    "do", "does", "did", "done",
-    "have", "has", "had",
-    "he", "she", "him", "his", "her", "they", "them", "their",
-    "we", "us", "our", "you", "your", "i", "me", "my",
-    "who", "whom", "which", "what", "where", "when", "why", "how",
 
-}
 
