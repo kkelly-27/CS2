@@ -1,15 +1,36 @@
-try:
-    with open("King_Lear.txt, r") as file:
-        counts = dict()
-        for line in file:
-            print(line)
-            words = line.split("")
-            for word in words:
-                if word not in counts:
-                    counts[word] = 1
-                else:
-                    counts[word] = 1
-        print(counts)
 
-except FileNotFoundError:
-    print("File Not Found")
+
+fname = input('Enter the file name: ')
+try:
+    fhand = open(fname)
+except:
+    print('File cannot be opened:', fname)
+    exit()
+
+counts = dict()
+for line in fhand:
+    words = line.split()
+    for word in words:
+        if word not in counts:
+            counts[word] = 1
+        else:
+            counts[word] += 1
+
+print(counts)
+
+
+# Code: https://www.py4e.com/code3/count1.py 
+
+stop_words = {
+    "and", "or", "the", "a", "an", "to", "of", "in", "is", "it",
+    "that", "for", "with", "as", "on", "at", "by", "from",
+    "this", "but", "not", "so", "no", "nor", "too",
+    "be", "been", "being", "are", "was", "were", "am",
+    "do", "does", "did", "done",
+    "have", "has", "had",
+    "he", "she", "him", "his", "her", "they", "them", "their",
+    "we", "us", "our", "you", "your", "i", "me", "my",
+    "who", "whom", "which", "what", "where", "when", "why", "how",
+
+}
+
