@@ -1,0 +1,74 @@
+"Flower Pot"
+"Author: Kyle Kelly"
+"Description: Analyzes the significant subject words in Macbeth and displays how many times they are used within a chunk of the book on a graph." 
+"Bugs: N/A"
+"Log: 1.1"
+
+import string
+import matplotlib.pyplot as plt
+
+
+stop_words = [
+    "and", "or", "the", "a", "an", "to", "of", "in", "is", "it",
+    "that", "for", "with", "as", "on", "at", "by", "from",
+    "this", "but", "not", "so", "no", "nor", "too",
+    "be", "been", "being", "are", "was", "were", "am",
+    "do", "does", "did", "done",
+    "have", "has", "had",
+    "he", "she", "him", "his", "her", "they", "them", "their",
+    "we", "us", "our", "you", "your", "i", "me", "my",
+    "who", "whom", "which", "what", "where", "when", "why", "how",
+
+]
+"Description: Opens the inputted file (Macbeth.txt), reads through the file, and then counts the frequency of each word, excluding the 'stop words', and then stores the counts into a dictionary"
+" Args: Takes in inputted file name and opens the file for reading"
+"Returns: A dictionary with the frequency of each word in the file, excluding the specified 'stop words'"
+
+fname = input('Enter the file name: ')
+try:
+    fhand = open(fname)
+except:
+    print('File cannot be opened:', fname)
+    exit()
+
+counts = dict()
+for line in fhand:
+    line = line.rstrip()
+    line = line.translate(line.maketrans("", "", string.punctuation))
+    line = line.lower()
+    words = line.split()
+    for word in words:
+        if word not in counts and word not in stop_words:
+            counts[word] = 1
+        else:
+            if word not in stop_words:
+                counts[word] += 1
+
+sorted_counts = dict(sorted(counts.items(), key=lambda item: item[1]))
+
+print(sorted_counts)
+
+
+# Code: https://www.py4e.com/code3/count2.py
+
+"Description: Sorts the words by frequency in the chunk and bookmarks the top 10 most frequent words and their specific frequencies"
+" Args: Sorts the counts dictionary by frequency using a function and then takes the top 10 most frequent words and their frequencies and puts them into a separate list"
+"Returns: The top 10 most frequent words and their frequencies"
+
+top_n = 10
+freq_words = sorted(counts.items(), key=lambda item: item[1], reverse=True)[:top_n]
+
+words = [item[0] for item in freq_words]
+frequencies = [item[1] for item in freq_words]
+
+"Description: Graphs the top 10 most frequent words in the inputted chunk of the Macbeth.txt"
+" Args: Uses matplotlib to create a bar graph of the data using the words as the x axis and the frequencies as the y axis"
+"Returns: Graph of the top 10 most frequent words in the inputted chunk of the Macbeth.txt"
+
+plt.figure()
+plt.bar(words, frequencies)
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title("Top 10 Most Frequent Words")
+plt.xticks(rotation=45)
+plt.show()
