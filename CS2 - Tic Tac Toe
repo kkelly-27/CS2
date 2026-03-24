@@ -1,25 +1,36 @@
-
+'''
 def win_detection():
   
-    
+    WASHINGTON, GET OFF THE PC NOW. NOT COOL MAN,
 
-def print_board():
-    board =
-    print(f"")
-input("Pick X or O: ")
-print(f"""
+'''
 
-    1  2  3
-1    |  | 
+board = [['1', '2', '3'],['4', '5', '6'],['7', '8', '9']]
+
+def print_board(board):
+
+  print(f"""  
+
+   
+  {board[0][0]} | {board[0][1]} | {board[0][2]}
   ----------
-2    |  | 
+  {board[1][0]} | {board[1][1]} | {board[1][2]}
   ----------
-3    |  |     
+  {board[2][0]} | {board[2][1]} | {board[2][2]}    
 
 """)
+def user_input(board):
+  player_input = ("Select A Coordinate Point 1-9")
+  
 
-base_board = [['A', 'B', 'C'],['A', 'B', 'C'],['A', 'B', 'C']]
-board = base_board
+  pass
+
+
+
+'''
+board = [['E', 'E', 'E'],['E', 'E', 'E'],['E', 'E', 'E']]
+
+
 if 1 in {
 len(set([board[0][0], board[0][1], board[0][2]]))
 len(set([board[1][0], board[1][1], board[0][2]]))
@@ -37,3 +48,4 @@ def print_board():
 input("Pick X or O: ")
 print("welcome to tic tac toe with alex archer")
 
+'''
