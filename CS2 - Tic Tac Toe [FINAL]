@@ -1,0 +1,55 @@
+"Flower Pot"
+"Author: Kyle Kelly"
+"Description: Allows players to play a match of Tic Tac Toe using a grid with numbered coordinates." 
+"Bugs: N/A"
+"Log: 1.1"
+
+board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+def print_board(board):
+    print(f"""
+  {board[0]} | {board[1]} | {board[2]}
+  ----------
+  {board[3]} | {board[4]} | {board[5]}
+  ----------
+  {board[6]} | {board[7]} | {board[8]}
+""")
+
+def user_input(board, player):
+    player_input = input(f"{player}, select a coordinate (1-9): ")
+
+    if player_input in board:
+        board[int(player_input) - 1] = player
+    else:
+        print("Invalid, try again.")
+        return False
+    return True
+
+def win_detection(board, player):
+    return (
+        (board[0] == board[1] == board[2] == player) or
+        (board[3] == board[4] == board[5] == player) or
+        (board[6] == board[7] == board[8] == player) or
+        (board[0] == board[3] == board[6] == player) or
+        (board[1] == board[4] == board[7] == player) or
+        (board[2] == board[5] == board[8] == player) or
+        (board[0] == board[4] == board[8] == player) or
+        (board[6] == board[4] == board[2] == player)
+    )
+
+print("Welcome to Tic Tac Toe")
+
+current_player = "X"
+
+while True:
+    print_board(board)
+
+    if not user_input(board, current_player):
+        continue
+
+    if win_detection(board, current_player):
+        print_board(board)
+        print(f"{current_player} WINS!")
+        break
+
+    current_player = "O" if current_player == "X" else "X"
