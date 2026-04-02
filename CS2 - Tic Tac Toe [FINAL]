@@ -4,6 +4,11 @@
 "Bugs: N/A"
 "Log: 1.1"
 
+
+"Description: Prints the current 3x3 Tic-Tac-Toe board out on the display."
+" Args: The numbered grid that represents the board positions."
+"Returns: The tic tac toe board in the returned state."
+
 board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 def print_board(board):
@@ -15,6 +20,10 @@ def print_board(board):
   {board[6]} | {board[7]} | {board[8]}
 """)
 
+"Description: Prompts the selection of a coordinate to put their X or O mark on the board."
+" Args: The nine coordinated on the board as well as the player's selected symbol."
+"Returns: Boolean algortithm, if the player enters a valid move, true, and if the input is invalid (spot already taken or not in the range), false."
+
 def user_input(board, player):
     player_input = input(f"{player}, select a coordinate (1-9): ")
 
@@ -24,6 +33,10 @@ def user_input(board, player):
         print("Invalid, try again.")
         return False
     return True
+
+"Description: Checks if the  player has achieved a winning combination on the Tic-Tac-Toe board."
+" Args: Board: A list of 9 elements representing the current board state. Player: The players symbol ('X' or 'O') to check for a win."
+"Returns: If the player has a winning combination, True, anything else, False."
 
 def win_detection(board, player):
     return (
@@ -37,11 +50,21 @@ def win_detection(board, player):
         (board[6] == board[4] == board[2] == player)
     )
 
+"Description: Runs loop Tic-Tac-Toe, alternating between players, checking for wins or a draw, and printing the board once the moves are over."
+" Args: Board: A list of 9 coordinates representing the Tic-Tac-Toe board."
+"Returns: None"
+
 print("Welcome to Tic Tac Toe")
 
 current_player = "X"
 
+counter = 0 
 while True:
+    if counter == 9:
+        print("Its a draw")
+        break 
+
+
     print_board(board)
 
     if not user_input(board, current_player):
@@ -52,4 +75,5 @@ while True:
         print(f"{current_player} WINS!")
         break
 
+    counter += 1
     current_player = "O" if current_player == "X" else "X"
