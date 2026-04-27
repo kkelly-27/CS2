@@ -1,5 +1,16 @@
+"Flower Pot"
+"Author: Kyle Kelly"
+"Description: " 
+"Bugs: N/A"
+"Log: 1.3"
+
 
 def load_display():
+
+# Desc: Opens the Titanic data file, displays the column names, prints the first 10 rows, and writes the total passenger count to an output file.
+# Args: N/A
+# Return: N/A
+
     with open('load_display', 'r') as output: 
 
         top = next(input).strip()
@@ -23,6 +34,11 @@ def load_display():
 
 
 def p_survival_rate(infile):
+
+# Desc: Calculates how many passengers survived, the total number of passengers, and the overall survival rate, then writes the results to survival_rate.csv.
+# Args: The opened Titanic CSV file.
+# Return: N/A
+
     with open('survival_rate.csv', 'w') as output:
 
         next(infile)
@@ -48,6 +64,11 @@ def p_survival_rate(infile):
 
 
 def p_class(infile):
+
+# Desc: Counts how many passengers were in first, second, and third class, then writes the results to class.csv.
+# Args: The opened Titanic CSV file.
+# Return: N/A
+
     with open('class.csv', 'w') as output:
 
         next(infile)
@@ -56,7 +77,7 @@ def p_class(infile):
         second_class = 0
         third_class = 0
        
-        for line in input:
+        for line in infile:
             fields = line.strip().split(',')
        
             pclass = fields[2]
@@ -76,6 +97,11 @@ def p_class(infile):
 
 
 def p_gender(infile):
+
+# Desc: Finds male passenger count and female passenger count and writes it into genders.csv.
+# Args: The opened Titanic CSV file.
+# Return: N/A
+
     with open('genders.csv', 'w') as output:
 
         next(infile)
@@ -83,7 +109,7 @@ def p_gender(infile):
         male_count = 0
         female_count = 0
        
-        for line in input:
+        for line in infile:
             fields = line.strip().split(',')
        
             sex = fields[5]
@@ -99,6 +125,11 @@ def p_gender(infile):
 
 
 def p_age(infile):
+
+# Desc: Finds total age, age count, survivor age, nonsurvivor age, survivor count, nonsurvivor count, youngest, and oldest and puts them into p_age.csv.
+# Args: The opened Titanic CSV file.
+# Return: N/A
+
     with open('age.csv', 'w') as output:
 
         next(infile)
@@ -112,7 +143,7 @@ def p_age(infile):
         youngest_age = None
         oldest_age = None
        
-        for line in input:
+        for line in infile:
             fields = line.strip().split(',')
        
             survived = fields[1]
@@ -147,9 +178,14 @@ def p_age(infile):
                 str(youngest_age) + "," +
                 str(oldest_age)
 )
-        
+
 
 def p_family(infile):
+
+# Desc: Finds total siblinings spouses, total parents children, and passenger count and puts them into p_family.csv. 
+# Args: The opened Titanic CSV file.
+# Return: N/A
+
     with open('family.csv', 'w') as output:
 
         next(infile)
@@ -158,7 +194,7 @@ def p_family(infile):
         total_parents_children = 0
         passenger_count = 0
        
-        for line in input:
+        for line in infile:
             fields = line.strip().split(',')
        
             family_connections = fields[7]
@@ -168,7 +204,6 @@ def p_family(infile):
                 family_connections = 0
             if parents_children == "":
                 parents_children = 0
-
             total_family_connections += int(family_connections)
             total_parents_children += int(parents_children)
             passenger_count += 1
@@ -181,7 +216,14 @@ def p_family(infile):
         output.write(f"{average_family_connections:.2f}" + "," + f"{average_parents_children:.2f}")
 
 
+
+
 def main():
+
+# Desc: Runs the main function.
+# Args: N/A
+# Return: N/A
+
     input_file = 'titanic.csv'
     
     while True:
@@ -210,7 +252,6 @@ def main():
             break
         else:
             print("ERROR: Input Valid Choice")
-
 
 if __name__ == "__main__":
     main()
