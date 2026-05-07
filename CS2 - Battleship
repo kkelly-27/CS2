@@ -1,21 +1,23 @@
-"Flower Pot"
-"Author: Kyle Kelly"
-"Description: A game where the player has 4 turns to locate a computer-randomized hidden battleship on a 5x5 board." 
-"Bugs: N/A"
-"Log: 1"
-
-import random
+"""
+Program: Flower Pot
+Author: Kyle Kelly
+Description: A game where each of the two players have 4 turns to locate a computer-randomized hidden battleship on a 5x5 board." 
+Bugs: N/A
+Log: 1
+"""
 
 board = []
 for i in range(5):
     board.append(["O"] * 5)
-    
-#"Description: Prints the current game board in a formatted 5x5 grid.
-#"Args: board (list) (The 2D list representing the game board)."
-#"Return: None." 
+
+"""
+Description: Prints the current game board in a formatted 5x5 grid.
+Args: board (list) (The 2D list representing the game board).
+Return: None.
+""" 
 
 def print_board(board):
-    print(f"""'
+    print(f"""
    1   2   3   4   5
 1  {board[0][0]} | {board[0][1]} | {board[0][2]} | {board[0][3]} | {board[0][4]}
   ---------------------
@@ -28,10 +30,16 @@ def print_board(board):
 5  {board[4][0]} | {board[4][1]} | {board[4][2]} | {board[4][3]} | {board[4][4]}
 """)
 
-ship_row = random.randint(0, 4)
-ship_column = random.randint(0, 4)
 
-print("Welcome to Battleship!")
+print("Welcome to Two Player Battleship!")
+
+print("Player 1, place your ship.")
+ship_row = int(input("Select Ship Row (1-5): ")) - 1
+ship_column = int(input("Select Ship Column (1-5): ")) - 1
+
+print("\n" * 50)
+
+print("Player 2, try to find the ship!")
 print_board(board)
 
 for turn in range(4):
@@ -40,15 +48,18 @@ for turn in range(4):
     guess_row = int(input("Select Row (1-5): ")) - 1
     guess_column = int(input("Select Column (1-5): ")) - 1
 
-
     if guess_row == ship_row and guess_column == ship_column:
         print("HIT")
+        print("Player 2 Wins!!!")
         break
+
     else:
         if guess_row not in range(5) or guess_column not in range(5):
-            print("INVALID COORDINATE.")
+            print("INVALID COORDINATE")
+
         elif board[guess_row][guess_column] == "X":
             print("Already Pinpointed...")
+
         else:
             print("MISS")
             board[guess_row][guess_column] = "X"
@@ -57,4 +68,5 @@ for turn in range(4):
 
     if turn == 3:
         print("GAME OVER")
+        print("Player 1 Wins!!!")
         print(f"SHIP REPORT: Row {ship_row+1}, Column {ship_column+1}")
