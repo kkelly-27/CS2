@@ -6,7 +6,6 @@ Bugs: N/A
 Log: 1.1
 """
 
-#Factorial of a Number
 """
     Description: Calculates the factorial of a number recursively.
     Args:
@@ -22,7 +21,6 @@ def factorial(n):
     return n * factorial(n - 1)
 
 
-#Summation of a Number
 """
     Description: Adds all numbers from "n" down to 1 recursively.
     Args:
@@ -40,7 +38,6 @@ def summation(n):
     return n + summation(n - 1)
 
 
-#Exponential Functions
 """
     Description: Calculates a base raised to an exponent recursively.
     Args:
@@ -56,7 +53,6 @@ def power(base, exponent):
     return base * power(base, exponent - 1)
 
 
-#Fibonacci Numbers
 """
     Description: Finds the "n"th Fibonacci number recursively.
     Args:
@@ -75,7 +71,6 @@ def fibonacci(n):
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-#Sum of a Number's Digits
 """
     Description: Adds each digit in a number recursively.
     Args:
@@ -91,7 +86,6 @@ def sum_digits(n):
     return (n % 10) + sum_digits(n // 10)
 
 
-#Product of a Number's Digits
 """
     Description: Multiplies each digit in a number recursively.
     Args:
@@ -107,7 +101,6 @@ def product_digits(n):
     return (n % 10) * product_digits(n // 10)
 
 
-#Product of Two Whole Numbers
 """
     Description: Multiplies two whole numbers using continuos addition recursively.
     Args:
@@ -124,7 +117,6 @@ def product_numbers(a, b):
     return a + product_numbers(a, b - 1)
 
 
-#Sum of Numbers in a Range
 """
     Description: Adds all numbers from start to end recursively.
     Args:
@@ -140,7 +132,6 @@ def range_sum(start, end):
     return start + range_sum(start + 1, end)
 
 
-#Reverse the Digits in a Number
 """
     Description: Reverses the digits of a number recursively.
     Args:
