@@ -1,0 +1,54 @@
+from flask import Flask, render_template, request
+import csv
+import os
+
+app = Flask(__name__)
+
+CSV_FILE = "survey_answers.csv"
+
+
+@app.route("/")
+def main():
+    return render_template("index.html")
+
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    name = request.form.get("name")
+    grade = request.form.get("grade")
+    favorite_subject = request.form.get("favorite_subject")
+    rating = request.form.get("rating")
+    feedback = request.form.get("feedback")
+
+    file_exists = os.path.isfile(CSV_FILE)
+
+    with open(CSV_FILE, "a", newline="") as file:
+        writer = csv.writer(file)
+
+        if not file_exists:
+            writer.writerow(["Name", "Grade", "Favorite Subject", "Rating", "Feedback"])
+
+        writer.writerow([name, grade, favorite_subject, rating, feedback])
+
+    return """
+    <h1>Thank you!</h1>
+    <p>Your response has been saved.</p>
+    <a href="/">Go back</a><br>
+    <a href="/results">View Results</a>
+    """
+
+
+@app.route("/results")
+def results():
+    responses = []
+
+    if os.path.isfile(CSV_FILE):
+        with open(CSV_FILE, "r") as file:
+            reader = csv.reader(file)
+            responses = list(reader)
+
+    return render_template("results.html", responses=responses)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
