@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>College Major Interest Survey</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #152c69;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🎓 College Major Interest Survey</h1>
+
+        <p>
+            Help us discover which college majors students are most interested in pursuing.
+        </p>
+
+        <form action="/submit" method="POST">
+
+            <label><strong>Name:</strong></label>
+            <input type="text" name="name" required>
+
+            <label><strong>Grade Level:</strong></label>
+            <select name="grade">
+                <option>Freshman</option>
+                <option>Sophomore</option>
+                <option>Junior</option>
+                <option>Senior</option>
+            </select>
+
+            <label><strong>Intended College Major:</strong></label>
+            <select name="major">
+                <option>Engineering</option>
+                <option>Computer Science</option>
+                <option>Business</option>
+                <option>Biology / Pre-Med</option>
+                <option>Psychology</option>
+                <option>Education</option>
+                <option>Political Science</option>
+                <option>Arts</option>
+                <option>Communications</option>
+                <option>Undecided</option>
+                <option>Other</option>
+            </select>
+
+            <button type="submit">Submit Survey</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
